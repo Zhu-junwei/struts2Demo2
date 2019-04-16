@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 配置struts2的常量 -->
+	<!-- 配置扩展名 -->
+	<constant name="struts.action.extension" value="action"/>
+	<!-- 开启静态方法访问 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+	
+	<!-- Struts2为了管理Action的配置，通过包进行管理 -->
+	<!-- 配置Struts2的包 -->
+    <package name="demo1" namespace="/" extends="struts-default">
+    	
+    	<!-- 定义拦截器 -->
+    	<interceptors>
+    		<interceptor name="interceptorDemo1" class="com.zhujunwei.interceptor.InterceptorDemo1"></interceptor>
+    		<interceptor name="interceptorDemo2" class="com.zhujunwei.interceptor.InterceptorDemo2"></interceptor>
+    		<!-- 定义拦截器栈 -->
+    		<interceptor-stack name="myStack">
+    			<interceptor-ref name="defaultStack" />
+    			<interceptor-ref name="interceptorDemo1" />
+    			<interceptor-ref name="interceptorDemo2" />
+    		</interceptor-stack>
+    	</interceptors>
+
+    	<!-- 配置action -->
+    	<action name="actionDemo1" class="com.zhujunwei.action.ActionDemo1">
+    		<result name="success">/demo1/demo1.jsp</result>
+    		
+    		<!-- 方式二：引入拦截器栈 -->
+    		<interceptor-ref name="myStack" />
+    		
+    		<!-- 方式一：引入拦截器(一旦引入自定义拦截器，默认拦截器栈的拦截器就不执行了，需要手动引入) -->
+    		<!-- <interceptor-ref name="defaultStack" />
+    		<interceptor-ref name="interceptorDemo1" />
+    		<interceptor-ref name="interceptorDemo2" /> -->
+    		
+    	</action>
+    	
+    	<action name="uiAction" class="com.zhujunwei.action.UIAction">
+			<result name="input">/demo2/demo3.jsp</result>
+		</action>
+    	
+    </package>
+
+</struts>

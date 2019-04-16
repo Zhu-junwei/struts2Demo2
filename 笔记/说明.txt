@@ -1,0 +1,14 @@
+com.zhujunwei.aaction
+	ActionDemo.java 测试拦截器使用
+	UIAction.java 测试demo2/demo3.jsp提交的数据
+com.zhujunwei.interceptor
+	IntereptorDemo1.java 自定义拦截器一
+	IntereptorDemo2.java 自定义拦截器二
+	
+WebContent
+	demo1
+		demo1.jsp 测试拦截器
+	demo2
+		demo1.jsp struts2通用标签库
+		demo2.jsp struts2通用标签库
+		demo3.jsp struts2 UI标签库
